@@ -1,25 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from "react-router-dom";
+import Home from "./conponents/home";
+import Reminders from "./conponents/reminders";
+import Navbar from "./conponents/navbar";
+import Todos from "./conponents/todos";
+import NewTodo from "./conponents/newTodo";
+import { GeneralContextProvider } from "./contexts/generalContext";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  return GeneralContextProvider(
+    <>
+      <Navbar></Navbar>
+      <Routes>
+        <Route path="/" element={<Home></Home>} />
+        <Route path="/reminders" element={<Reminders></Reminders>} />
+        <Route path="/todos" element={<Todos></Todos>} />
+        <Route path="/add-todo" element={<NewTodo></NewTodo>} />
+        <Route path="*" element={<Home></Home>} />
+      </Routes>
+    </>
   );
 }
 
